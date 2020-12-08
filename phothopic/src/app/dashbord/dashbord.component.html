@@ -1,0 +1,19 @@
+<div class="text-center">
+    <h1 class="title-fantasy">Know some of the works of our users</h1>
+    <div *ngFor="let photo of photos" darkonHover brigthness="95%">
+        <a [routerLink]="['/user', userName]">
+            <app-card [title]="photo.description">
+                <app-photo
+                    [url]="photo.url"
+                    [description]="photo.description">
+                </app-photo>
+                <br>
+                <div class="text-center p-1">
+                    {{userName}}
+                </div>
+            </app-card>
+        </a>
+    </div>
+</div>
+
+

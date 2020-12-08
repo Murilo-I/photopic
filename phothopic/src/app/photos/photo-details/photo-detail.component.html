@@ -1,0 +1,35 @@
+<div class="bg-white border" *ngIf="(photo$ | async) as photo">
+  <div class="row">
+    <div class="col-lg-8">
+      <app-photo [url]="photo.url" [description]="photo.description"></app-photo>
+    </div>
+  
+    <div class="col-lg-4 p-4" showIfLogged>
+        <small>
+          <p class="text-left break-word">{{photo?.description}}</p>
+          <div class="text-left mb-4">
+            <a [routerLink]="['/photo', photo.id]" style="color: red;">
+              <i (click)="like(photo)" class="fa fa-heart fa-2x mr-2 pull-left">
+                 {{ photo.likes }} </i>
+            </a>
+            <i class="fa fa-comment fa-2x mr-2 ml-2"> {{ photo.comments }} </i>
+            <a [routerLink]="['/home']">
+              <i (click)="remove()" ableDelete [ownedPhoto]="photo"
+                class="fa fa-trash-o fa-2x pull-right"></i>
+            </a>
+          </div>
+          <hr>
+        </small>
+        <app-photo-comments 
+          *ngIf="photo.allowComments; else warnning"
+          [photoId]="photoId">
+        </app-photo-comments>
+        <ng-template #warnning>
+          <h4>User has disabled commets for this photo</h4>
+        </ng-template>
+    </div>
+    <div *ngIf="!userLogged">
+      <h4 style="margin: 20px"><a [routerLink]="['/home']">Log in</a> to interact with the photo</h4>
+    </div>
+  </div>
+</div>

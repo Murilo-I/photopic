@@ -1,0 +1,15 @@
+<div class="text-center mt-3 mb-3">
+    <div style="background-color: #000c36; color: white;
+        display: inline-block; padding: 10px; border-radius: 10px; margin-left: 10px;">
+        <form>
+            <i aria-hidden="true" class="fa fa-search mr-2"></i> 
+            <input
+                class="rounded"
+                type="search"
+                placeholder="image filter"
+                autofocus 
+                (keyup)="debounce.next($event.target.value)"
+                [value]="value">
+        </form>
+    </div>
+</div>

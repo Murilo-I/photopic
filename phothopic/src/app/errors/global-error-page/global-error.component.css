@@ -1,0 +1,19 @@
+.error-box {
+    border-style: solid;
+    border-color: red; 
+    border-radius: 10px;
+    display: inline-block;
+    padding: 15px; 
+    margin-top: 10px;
+    transition: 0.5s;
+    color: red;
+}
+
+.error-box:hover {
+    background-color: red;
+    color: black;
+}
+
+a {
+    color: rgb(90, 190, 255);
+}

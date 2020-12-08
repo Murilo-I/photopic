@@ -1,0 +1,43 @@
+<header class="fixed-top">
+    <nav class="navbar navbar-light" style="background-color: #6194e7;">
+        <a class="navbar-brand" [routerLink]="">
+            <img src="/assets/imgs/favicon.png" alt="logo photopic" width="30" height="30"
+                (click)="menu.toggle()" tabindex="0" (keyup.space)="menu.toggle()"> 
+        </a>    
+        <app-menu #menu>
+            <ul style="list-style: none;">
+                <li><a [routerLink]="['']" (click)="menu.toggle()">Dashboard</a></li>
+                <hr>
+                <li><strong>Know the users work</strong></li>
+            </ul>
+            <ul style="list-style: none; height: 50vh; overflow-y: auto;">
+                <li><a [routerLink]="['/user/flavio']" (click)="menu.toggle()">flavio</a></li>
+                <li><a [routerLink]="['/user/almeida']" (click)="menu.toggle()">almeida</a></li>
+                <li><a [routerLink]="['/user/calopsita']" (click)="menu.toggle()">calopsita</a></li>
+                <li><a [routerLink]="['/user/alura']" (click)="menu.toggle()">alura</a></li>
+                <li><a [routerLink]="['/user/lordhordin']" (click)="menu.toggle()">lordhordin</a></li>
+            </ul>
+        </app-menu>
+        <div *ngIf="(user$ | async) as user; else login">
+            <a class="mr-3" [routerLink]="['user', user.name]" style="color: whitesmoke;">
+                <i class="fa fa-user-circle"></i>
+                {{user.name}}
+            </a>   
+            <a (click)="logout()" [routerLink]="['/home']" style="color: whitesmoke;">
+                <i class="fa fa-sign-out"></i>
+                Logout
+            </a>
+        </div>
+
+        <ng-template #login>
+            <span class="navbar-text">
+                <a [routerLink]="['/home']" style="color: whitesmoke;">
+                    Please, login!</a>
+            </span>
+        </ng-template>
+    </nav>
+    <div class="fixed-top">
+        <app-loading-bar></app-loading-bar>
+        <app-alert></app-alert>
+    </div>
+</header>
